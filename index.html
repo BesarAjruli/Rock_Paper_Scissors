@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <script>
+            let humanScore = 0;
+            let computerScore = 0;
+            let round = 5
+
+            function getPCchoice(){
+                let choicePC =  Math.floor(Math.random() * (3 - 0) + 0);
+
+                switch(choicePC) {
+                    case 0: return "rock";
+                    break;
+                    case 1: return "paper";
+                    break;
+                    case 2: return "scissors";
+                    break;
+                }
+            }
+
+            function getHumanChoice(){
+                let choiceH = prompt("Pick between - Rock,Paper and Scissors!")
+                
+                return choiceH.toLocaleLowerCase()
+            }
+
+            function playRound(humanChoice, computerChoice){
+
+                if (round != 0){
+                if(humanChoice == "rock"){
+                    if(computerChoice == "rock"){
+                        console.log("It's a tie!");
+                        alert("It's a tie!");
+                    }
+                    else if(computerChoice == "paper"){
+                        console.log("You lost!");
+                        alert("You lost!");
+                        computerScore++;
+                    }
+                    else if (computerChoice == "scissors"){
+                        console.log("You won!");
+                        alert("You won!");
+                        humanScore++;
+                    }
+                    round--;
+                }
+                else if(humanChoice === "paper"){
+                    if(computerChoice == "paper"){
+                        console.log("It's a tie!");
+                        alert("It's a tie!");
+                    }
+                    else if(computerChoice == "scissors"){
+                        console.log("You lost!");
+                        alert("You lost!");
+                        computerScore++;
+                    }
+                    else if (computerChoice == "rock"){
+                        console.log("You won!");
+                        alert("You won!");
+                        humanScore++;
+                    }
+                    round--;
+                }
+                else if(humanChoice === "scissors"){
+                    if(computerChoice == "scissors"){
+                        console.log("It's a tie!");
+                        alert("It's a tie!");
+                    }
+                    else if(computerChoice == "rock"){
+                        console.log("You lost!");
+                        alert("You lost!");
+                        computerScore++;
+                    }
+                    else if (computerChoice == "paper"){
+                        console.log("You won!");
+                        alert("You won!");
+                        humanScore++;
+                    }
+                    round--;
+                }
+                else{
+                    console.log("Enter a valid input!");
+                    alert("Enter a valid input!");
+                }
+            }
+            else{
+                if(humanScore > computerScore){
+                    alert("You won this game!")
+                    console.log("You won this game!")
+                }
+                else{
+                    alert("The bot won this game!")
+                    console.log("The bot won this game!")
+                }
+                return
+            }
+    
+                 playRound(getHumanChoice(), getPCchoice());
+            }
+
+            while(round > 0){
+                    playRound(getHumanChoice(), getPCchoice())
+            }
+
+        </script>
+    </body>
+</html>
