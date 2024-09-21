@@ -9,6 +9,7 @@
             let computerScore = 0;
             let round = 5
 
+            //Get the computers choice
             function getPCchoice(){
                 let choicePC =  Math.floor(Math.random() * (3 - 0) + 0);
 
@@ -22,6 +23,7 @@
                 }
             }
 
+            //Get players choice
             function getHumanChoice(){
                 let choiceH = prompt("Pick between - Rock,Paper and Scissors!")
                 
@@ -102,6 +104,7 @@
                  playRound(getHumanChoice(), getPCchoice());
             }
 
+            //Call function
             while(round > 0){
                     playRound(getHumanChoice(), getPCchoice())
             }
