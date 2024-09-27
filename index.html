@@ -2,12 +2,67 @@
 <html>
     <head>
         <title>Rock Paper Scissors</title>
+
+        <style>
+            html{
+                background-color: #222;
+                height: 100%;
+                width: 100%;
+            }
+            .main{
+                display: flex;
+                flex-grow: 1;
+                height: 100vh;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .buttonDiv{
+                width: 100%;
+                height: 150px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .buttonDiv button{
+                width: 150px;
+                height: 50px;
+                border-radius: 15px;
+                border: 0.3px solid #000;
+                margin: 0 30px;
+                background-color: #eee;
+                color: black;
+                font-weight: 800;
+            }
+            div{
+                color: #eee;
+            }
+        </style>
     </head>
     <body>
+        <div class="main">
+        <div class="buttonDiv">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+        <div id="results"></div>
+    </div>
         <script>
+            //get buttons from DOM
+            const buttons = document.querySelectorAll("button")
+
+            //add click event
+            buttons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    playRound(getHumanChoice(button.id), getPCchoice())
+                })
+            })
+
             let humanScore = 0;
             let computerScore = 0;
-            let round = 5
+
+            let results = document.querySelector("#results")
 
             //Get the computers choice
             function getPCchoice(){
@@ -24,90 +79,65 @@
             }
 
             //Get players choice
-            function getHumanChoice(){
-                let choiceH = prompt("Pick between - Rock,Paper and Scissors!")
-                
-                return choiceH.toLocaleLowerCase()
+            function getHumanChoice(choice){
+
+                return choice
             }
 
             function playRound(humanChoice, computerChoice){
-
-                if (round != 0){
                 if(humanChoice == "rock"){
                     if(computerChoice == "rock"){
-                        console.log("It's a tie!");
-                        alert("It's a tie!");
+                        results.textContent = "It's a tie!";
                     }
                     else if(computerChoice == "paper"){
-                        console.log("You lost!");
-                        alert("You lost!");
+                        results.textContent = "You lost!";
                         computerScore++;
                     }
                     else if (computerChoice == "scissors"){
-                        console.log("You won!");
-                        alert("You won!");
+                        results.textContent = "You won!";
                         humanScore++;
                     }
-                    round--;
                 }
                 else if(humanChoice === "paper"){
                     if(computerChoice == "paper"){
-                        console.log("It's a tie!");
-                        alert("It's a tie!");
+                       results.textContent = "It's a tie!";
                     }
                     else if(computerChoice == "scissors"){
-                        console.log("You lost!");
-                        alert("You lost!");
+                        results.textContent = "You lost!";
                         computerScore++;
                     }
                     else if (computerChoice == "rock"){
-                        console.log("You won!");
-                        alert("You won!");
+                       results.textContent = "You won!";
                         humanScore++;
                     }
-                    round--;
                 }
                 else if(humanChoice === "scissors"){
                     if(computerChoice == "scissors"){
-                        console.log("It's a tie!");
-                        alert("It's a tie!");
+                        results.textContent = "It's a tie!";
                     }
                     else if(computerChoice == "rock"){
-                        console.log("You lost!");
-                        alert("You lost!");
+                        results.textContent = "You lost!";
                         computerScore++;
                     }
                     else if (computerChoice == "paper"){
-                        console.log("You won!");
-                        alert("You won!");
+                       results.textContent = "You won!";
                         humanScore++;
                     }
-                    round--;
                 }
                 else{
                     console.log("Enter a valid input!");
                     alert("Enter a valid input!");
                 }
-            }
-            else{
-                if(humanScore > computerScore){
-                    alert("You won this game!")
-                    console.log("You won this game!")
+            
+                if(humanScore === 5){
+                    results.textContent = "You won this game!"
                 }
-                else{
-                    alert("The bot won this game!")
-                    console.log("The bot won this game!")
+                if(computerScore === 5){
+                    results.textContent = "The bot won this game!"
                 }
                 return
             }
-    
-                 playRound(getHumanChoice(), getPCchoice());
-            }
 
-            //Call function
-            while(round > 0){
-                    playRound(getHumanChoice(), getPCchoice())
-            }
 
         </script>
     </body>
